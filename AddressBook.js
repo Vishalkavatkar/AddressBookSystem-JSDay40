@@ -211,25 +211,40 @@ function addContact(contact) {
  * @param {*} city - we will pass the city to search for contacts
  * @returns - contacts with specific city
  */
-function searchContactByCity(city) {
-    return addressBookArray.filter((contact) => contact.city == city);
-  }
+ function searchContactByCity(firstName, city) {
+    return addressBookArray.filter((contact) => contact.city == city && contact.firstName == firstName);
+}
   
   /**
    * Function to search contact by state
    * @param {*} state -  we will pass the state to search for contacts
    * @returns - contacts with specific state
    */
-function searchContactByState(state) {
-    return addressBookArray.filter((contact) => contact.state == state);
-  }
+   function searchContactByState(firstName, state) {
+    return addressBookArray.filter((contact) => contact.state == state && contact.firstName == firstName);
+}
 
-  let firstContact = new Contact("Vishal", "Kavatkar", "Dombivali", "Dombivali", "Maharashtra", "421201", "91-9999123999", "Vishal@gmail.com");
+/**
+ * Function to view contact by city
+ */
+function viewContactsByCity(city){
+    return addressBookArray.filter((contact) => contact.city == city);
+}
+
+function viewContactsByState(state){
+    return addressBookArray.filter((contact) => contact.state == state);
+}
+
+let firstContact = new Contact("Vishal", "Kavatkar", "Dombivali", "Dombivali", "Maharashtra", "421201", "91-9999123999", "Vishal@gmail.com");
   let secondContact = new Contact("Prasad", "Juvekar", "Dombivali", "Dombivali", "Maharashtra", "421201", "91-8888123888", "Prasad@gmail.com");
+let thirdContact = new Contact("Hemant", "Ghogale", "ASStreat", "Lasvegas", "Unitedstates", "876545", "96-1234567890", "hemant@gmail.com");
+let fourthContact = new Contact("Raj", "Dicholkar", "Khalifa", "AbuDhabi", "Arab", "457893", "97-0987654321", "raj@gmail.com");
 
 try {
     addressBookArray.push(firstContact);
     addressBookArray.push(secondContact);
+    addressBookArray.push(thirdContact);
+    addressBookArray.push(fourthContact);
 } catch (e) {
     console.error(e);
 }
@@ -253,8 +268,15 @@ try {
 }
 console.log(addressBookArray);
 
-console.log("\nSearch Contact By City");
-console.log(searchContactByCity("Dombivali"));
+console.log("\nSearch Vishal In City - Dombivali");
+console.log(searchContactByCity("Vishal", "Dombivali"));
 
-console.log("\nSearch Contact By State");
-console.log(searchContactByState("Maharashtra"));
+console.log("\nSearch Prasad In State - Maharashtra");
+console.log(searchContactByState("Vishal", "Maharashtra"));
+
+
+console.log("\nView Contacts By City : AbuDhabi \n" );
+console.log(viewContactsByCity("AbuDhabi"));
+
+console.log("\nView Contacts By State : UnitedStates \n" );
+console.log(viewContactsByState("Unitedstates"));
